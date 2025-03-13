@@ -13,3 +13,25 @@ INNER JOIN Contas
                 CASE WHEN CartaoCodigo = NOT NULL
                 FROM CartaoCredito;
 ORDER BY 1;
+
+---Dia 13/03
+
+CREATE TABLE departamentos(
+    id_departamentos INT,
+    nome_departamento char(50),
+);
+INSERT departamentos VALUES(1,'RH'),(2,'TI'),(3,'FINANCEIRO'),(4,'DIRETORIA');
+CREATE TABLE funcionarios(
+    id_funcionarios INT,
+    nome_funcionario char(50),
+    id_gerente INT,
+    id_departamento INT
+)INSERT funcionarios VALUES (1,'José',null,4),(2,'Pedro',1,3),(3,'Maria',1,1);
+SELECT funcionarios.nome_funcionario, departamentos.nome_departamento
+FROM funcionarios
+LEFT JOIN departamentos ON (funcionarios.id_departamento=departamentos.id_departamentos)
+
+SELECT * FROM funcionarios
+
+
+INSERT funcionarios VALUES(4,'Mateus',1,null);
