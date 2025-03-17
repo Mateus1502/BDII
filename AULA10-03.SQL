@@ -68,6 +68,15 @@ HAVING COUNT(ClienteCodigo) >
         (SELECT AVG(ClienteCodigo)FROM Clientes) ---SUB CONSULTA
 ORDER BY QUANTIDADE DESC---Realmente volta nada
 
+use MinhaCaixa;
+SELECT ClienteNome,SUM(ClienteRendaAnual) AS Renda--NÃO DEVEMOS USAR O ALIAS PQ ELE FOI CRIADO
+FROM Clientes
+--->WHERE MAS ELE NÃO SERVE POIS VAI DE LINHA EM LINHA
+GROUP BY ClienteNome
+HAVING SUM(ClienteRendaAnual)> 
+        (SELECT AVG(ClienteRendaAnual)FROM Clientes) ---SUB CONSULTA
+ORDER BY Renda DESC---Este tem retorno
+
 
 SELECT 
     CASE 
