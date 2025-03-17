@@ -53,3 +53,26 @@ FROM funcionarios
 
 
 ---INSERT funcionarios VALUES(4,'Mateus',1,null);
+
+---AULA dia 17/03
+
+
+---USOU FUNÇÃO DE AGREGAÇÃO, USE GROUP BY
+--COUNT, SUM, AVG, MAX, MIN --COUNT DISTINCT ---->GROUP BY ---> HAVING
+use MinhaCaixa;
+SELECT ClienteBairro,ClienteSexo,COUNT(ClienteCodigo) AS QUANTIDADE--NÃO DEVEMOS USAR O ALIAS PQ ELE FOI CRIADO
+FROM Clientes
+--->WHERE MAS ELE NÃO SERVE POIS VAI DE LINHA EM LINHA
+GROUP BY ClienteBairro,ClienteSexo
+HAVING COUNT(ClienteCodigo) > 
+        (SELECT AVG(ClienteCodigo)FROM Clientes) ---SUB CONSULTA
+ORDER BY QUANTIDADE DESC---Realmente volta nada
+
+
+SELECT 
+    CASE 
+        WHEN ClienteSexo IS NULL THEN 'NN'
+        ELSE ClienteSexo 
+    END AS ClienteSexo
+FROM Clientes
+GROUP BY ClienteSexo;
