@@ -1,0 +1,23 @@
+USE MinhaCaixa;
+SET DATEFORMAT YDM;----seta a data para o formato normal de ser humano
+SET LANGUAGE PORTUGUESE;----seta o idioma
+
+SELECT YEAR(GETDATE())-YEAR(Clientes.ClienteNascimento),
+    DATEDIFF(YEAR,ClienteNascimento,GETDATE()),
+    DATEPART(YY,ClienteNascimento),
+    DATEADD(YY,1,ClienteNascimento),
+    EOMONTH(GETDATE()),----ultimo dia do mês +1 para o primeiro dia do mês mais dateadd
+    DATENAME(MONTH,(GETDATE()))---mostra o nome do mês
+FROM Clientes;
+SELECT GETDATE() as AnoAtual, 
+Clientes.ClienteNascimento as AnoNascimento,
+YEAR(GETDATE()) -YEAR(ClienteNascimento) as IdadeCliente
+FROM Clientes;
+
+SELECT DATEDIFF(YEAR,ClienteNascimento,GETDATE()) AS IDADE
+FROM Clientes;
+SELECT DATEDIFF(DAY,ClienteNascimento,GETDATE()) AS DIAS
+FROM Clientes;
+SELECT DATEDIFF(MONTH,ClienteNascimento,GETDATE()) AS MESES
+FROM Clientes;
+---DATENAME(MONTH,ClienteNascimento)---mostra o nome do mês
