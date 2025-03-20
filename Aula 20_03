@@ -4,7 +4,7 @@ SET LANGUAGE PORTUGUESE;----seta o idioma
 
 SELECT YEAR(GETDATE())-YEAR(Clientes.ClienteNascimento),
     DATEDIFF(YEAR,ClienteNascimento,GETDATE()),
-    DATEPART(YY,ClienteNascimento),
+    DATEPART(YY,ClienteNascimento),---- Parte da data(YY= Ano, MM = mês, DD = dia) 
     DATEADD(YY,1,ClienteNascimento),
     EOMONTH(GETDATE()),----ultimo dia do mês +1 para o primeiro dia do mês mais dateadd
     DATENAME(MONTH,(GETDATE()))---mostra o nome do mês
