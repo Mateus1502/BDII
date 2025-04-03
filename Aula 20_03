@@ -21,3 +21,20 @@ FROM Clientes;
 SELECT DATEDIFF(MONTH,ClienteNascimento,GETDATE()) AS MESES
 FROM Clientes;
 ---DATENAME(MONTH,ClienteNascimento)---mostra o nome do mês
+
+-----AULA 03/04
+
+CREATE FUNCTION estado_civil(
+    @estado CHAR(50)
+)
+RETURNS TABLE AS 
+RETURN
+    SELECT ClienteEstadoCivil
+    FROM Clientes
+    WHERE ClienteNome = @estado;
+    RETURN @estado;
+
+GO
+
+SELECT ClienteEstadoCivil,dbo.estado_civil(ClienteEstadoCivil) AS Situação
+FROM Clientes
