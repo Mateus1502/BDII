@@ -1,0 +1,29 @@
+CREATE OR ALTER  VIEW VClientesBairro
+AS
+(
+    SELECT ClienteNome,ClienteBairro FROM Clientes
+)
+
+GO
+
+CREATE VIEW vClientesIdade
+AS
+(
+    SELECT ClienteNome,
+    DATEDIFF(YEAR,ClienteNascimento,GETDATE()) AS Idade
+    FROM Clientes
+)
+GO
+SELECT * FROM vClientesIdade
+SELECT * FROM VClientesBairro;
+
+CREATE VIEW V_IDADE
+AS
+(
+    SELECT ClienteNome,
+    CASE WHEN DATEDIFF(YEAR,ClienteNascimento,GETDATE()) >45 THEN 'IDOSO' ELSE 'NOVO' END
+    AS Idade
+    FROM Clientes
+)
+GO
+SELECT * FROM V_IDADE
