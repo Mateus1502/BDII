@@ -1,0 +1,32 @@
+CREATE PROCEDURE uspRetornaIdade2
+@CodigoCliente int 
+AS 
+SELECT Clientes.ClienteNome, YEAR(GETDATE())- YEAR(ClienteNascimento) AS IDADE
+FROM Clientes
+INNER JOIN Contas ON Clientes.ClienteCodigo=Contas.ClienteCodigo
+WHERE Clientes.ClienteCodigo = @CodigoCliente;
+
+EXECUTE uspRetornaIdade2 1----parametro
+
+CREATE OR ALTER PROCEDURE uspRetornaIdade3
+(   
+    @CodigoCliente int,
+    @ClienteNome VARCHAR(100),
+    @crud CHAR(1)
+    
+) 
+AS 
+IF @crud = 'r'
+BEGIN
+    SELECT Clientes.ClienteNome, YEAR(GETDATE())- YEAR(ClienteNascimento) AS IDADE
+    FROM Clientes
+    INNER JOIN Contas ON Clientes.ClienteCodigo=Contas.ClienteCodigo
+    WHERE Clientes.ClienteCodigo = @CodigoCliente
+END;    
+if @crud = 'c'
+BEGIN 
+    INSERT Clientes(ClienteNome) VALUES (@ClienteNome)
+END;
+
+EXECUTE uspRetornaIdade3 1,'Mateus','c'
+SELECT * FROM Clientes WHERE ClienteNome ='Mateus'
